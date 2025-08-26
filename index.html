@@ -13,7 +13,11 @@
     />
 
     <script src="https://cdn.socket.io/4.1.2/socket.io.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/magicchat-core/prod-ssc-client-cdns@v0.2.8/bundle.js"></script>
+    <!-- <script src="node_modules/chathead-consumer-client/dist/bundle.js"></script> -->
+
+    <script src="./public/libs/node_modules/chathead-consumer-client/dist/bundle.js"></script>
+
+    <!-- <script src="https://magicchat-core.github.io/dev-ssc-client-cdns/bundle.js"></script> -->
 
 
 
@@ -36,20 +40,22 @@
             
     -->
 
-   <script>
-      document.addEventListener("DOMContentLoaded", async function () {
-            await window.magicchat_io.setUp(
-                "<MAGICCHAT_APP_NAME>", // app_name
-                "<MAGICCHAT_API_KEY>", // api_key
-              false, // header_req (true by default)
-              );
-              
-            await window.magicchat_io.initialize({"app_version":"V4"});
+
+    <!-- load config.js before using it -->
+<script src="./config.js"></script>
 
 
-      });
-    </script>    
 
+<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    await window.magicchat_io.setUp(
+      window.__APP_CONFIG__.APP_NAME,
+      window.__APP_CONFIG__.API_KEY,
+      false
+    );
+    await window.magicchat_io.initialize({ app_version: window.__APP_CONFIG__.APP_VERSION });
+  });
+</script>
 
 
 
